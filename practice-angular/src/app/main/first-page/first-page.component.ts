@@ -12,4 +12,8 @@ export class FirstPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public onClick(){
+    console.log("onClickEvent");
+  }
+
 }
