@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// 通信系
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+
+// コンポーネント
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuPageComponent } from './main/menu-page/menu-page.component';
@@ -16,7 +20,9 @@ import { FirstPageComponent } from './main/first-page/first-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientXsrfModule
   ],
   providers: [],
   bootstrap: [AppComponent]
