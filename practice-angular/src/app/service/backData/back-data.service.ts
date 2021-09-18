@@ -1,5 +1,9 @@
 import { Injectable,OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { tap, switchMap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { ConstantPool } from '@angular/compiler';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +17,18 @@ export class BackDataService {
   ngOnInit(){
   }
 
-  TestUri : string = ""
-
-
-  getTestData(){
+  getTestData(getUri : string){
     console.log("start getTestData");
-    const url = "http://127.0.0.1:5000/dataTest";
-    this.http.post(url, "",
-    {
-        headers: new HttpHeaders().set('Content-Type', 'application/json')
-     }
-    ).subscribe(
-        response => {
-          console.log("success"); // 成功したときにする処理
-            },
-        error => {
-          console.log("error!!");
-        }
-    );
+    const url = "http://127.0.0.1:5000/" + getUri;
+    var request = new XMLHttpRequest();
+    // `false` で同期リクエストになる
+    request.open('GET', url, false);
+    request.send(null);
+    if (request.status === 200) {
+      // JSON変換
+      var resultData = JSON.parse(request.responseText)
+      console.log(resultData)
+      return resultData;
+    }
   }
 }
