@@ -8,7 +8,6 @@ CORS(app)
 
 @app.route('/dataTest',methods=['GET', 'POST'])
 def index():
-    print('hello world')
     message = {'greeting':'Hello from Flask!'}
     return jsonify(message)
     #return 'Hello Test World'

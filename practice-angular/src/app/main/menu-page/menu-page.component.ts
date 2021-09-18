@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BackDataService } from 'src/app/service/backData/back-data.service';
 import { DataSaveService } from 'src/app/service/dataSave/data-save.service';
 
 
@@ -25,6 +24,12 @@ export class MenuPageComponent implements OnInit {
     for(let i = 0; i < key.length; i++){
       this.htmlString = result[key[i]]
     }
+    console.log("getBackTestData END")
+
+  }
+
+  getAndSendData() {
+    console.log("getAndSendData Start")
     console.log("getBackTestData END")
 
   }
