@@ -18,12 +18,16 @@ def dataTest():
 @router.route('/postData',methods=['GET','POST'])
 def postData():
     print ('postData start')
-    # Angularからデータ取得
-    name = request.form.get('name')
-    age = request.form.get('age')
+    # AngularからJSONデータ取得
+    req = request.json
+    print(req)
+    name = request.json['name']
+    age = request.json['age']
+    print(name)
+    print(age)
 
     message = {'greeting':'Name'} 
-    return jsonify(message)
+    return request.json
     #return 'Hello Test World'
     
 ###############################################################################################

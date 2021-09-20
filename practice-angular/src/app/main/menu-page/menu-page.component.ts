@@ -38,6 +38,7 @@ export class MenuPageComponent implements OnInit {
     var key  = Object.keys(result)
     for(let i = 0; i < key.length; i++){
       this.htmlString = result[key[i]]
+      console.log(this.htmlString)
     }
     console.log("getBackTestData END")
 

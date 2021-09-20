@@ -50,13 +50,12 @@ export class BackDataService {
     console.log('start getPosttData');
     const url = this.flaskIp + getUri;
     var request = new XMLHttpRequest();
-    var sdData = JSON.parse(sendData);
     // `false` で同期リクエストになる
     request.open('POST', url, false);
     request.setRequestHeader("Content-Type", "application/json");
     try {
-      //console.log(sdData);
-      request.send(sdData);
+      // JSONデータを送信する
+      request.send(sendData);
       if (request.status === 200) {
         // JSON変換
         var resultData = JSON.parse(request.responseText);
