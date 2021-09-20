@@ -30,6 +30,15 @@ export class MenuPageComponent implements OnInit {
 
   getAndSendData() {
     console.log("getAndSendData Start")
+    //【実験】渡すデータを作成
+    var arrayListTest = {"name":"testTaro","age":"15"};
+    var json = JSON.stringify(arrayListTest);
+
+    var result =this.dss.postBackData(json)
+    var key  = Object.keys(result)
+    for(let i = 0; i < key.length; i++){
+      this.htmlString = result[key[i]]
+    }
     console.log("getBackTestData END")
 
   }

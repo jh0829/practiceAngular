@@ -16,8 +16,15 @@ export class DataSaveService {
 
   getBackData() {
     console.log("getBackData Start")
-    this.uri = "dataTest";
+    this.uri = "getTestData/dataTest";
     var data = this.bds.getTestData(this.uri)
+    return data;
+  }
+
+  postBackData(json:any) {
+    console.log("getBackData Start")
+    this.uri = "getTestData/postData";
+    var data = this.bds.getPosttData(this.uri,json)
     return data;
   }
 }
