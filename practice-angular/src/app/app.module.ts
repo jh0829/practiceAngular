@@ -1,22 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// 通信系
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+
+// コンポーネント
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FirtsPageComponent } from './main/firts-page/firts-page.component';
 import { MenuPageComponent } from './main/menu-page/menu-page.component';
 import { GetDataComponent } from './data/get-data/get-data.component';
+import { FirstPageComponent } from './main/first-page/first-page.component';
+import { SearchListComponent } from './search/search-list/search-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirtsPageComponent,
     MenuPageComponent,
-    GetDataComponent
+    GetDataComponent,
+    FirstPageComponent,
+    SearchListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientXsrfModule
   ],
   providers: [],
   bootstrap: [AppComponent]
