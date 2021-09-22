@@ -43,4 +43,8 @@ export class MenuPageComponent implements OnInit {
     console.log("getBackTestData END")
 
   }
+
+  public onClickSearch(){
+    console.log("onClickSearch");
+  }
 }

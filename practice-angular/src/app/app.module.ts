@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { MenuPageComponent } from './main/menu-page/menu-page.component';
 import { GetDataComponent } from './data/get-data/get-data.component';
 import { FirstPageComponent } from './main/first-page/first-page.component';
+import { SearchListComponent } from './search/search-list/search-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPageComponent,
     GetDataComponent,
-    FirstPageComponent
+    FirstPageComponent,
+    SearchListComponent
   ],
   imports: [
     BrowserModule,
