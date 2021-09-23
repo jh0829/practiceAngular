@@ -44,6 +44,17 @@ export class MenuPageComponent implements OnInit {
 
   }
 
+  getSQLData(){
+    console.log("getSQLData Start")
+    var result =this.dss.getSQLData()
+    var key  = Object.keys(result)
+    for(let i = 0; i < key.length; i++){
+      this.htmlString = result[key[i]]
+    }
+    console.log("getBackTestData END")
+
+  }
+
   public onClickSearch(){
     console.log("onClickSearch");
   }
