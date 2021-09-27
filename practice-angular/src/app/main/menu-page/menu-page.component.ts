@@ -47,9 +47,14 @@ export class MenuPageComponent implements OnInit {
   getSQLData(){
     console.log("getSQLData Start")
     var result =this.dss.getSQLData()
+    console.log(result)
     var key  = Object.keys(result)
     for(let i = 0; i < key.length; i++){
-      this.htmlString = result[key[i]]
+      Object.keys(result[i]).forEach(function(key) {
+        console.log(key+":"+result[i][key]['name']);
+      });
+      // 0は固定
+      this.htmlString = result[i][0]['name']
     }
     console.log("getBackTestData END")
 

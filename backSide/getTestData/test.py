@@ -2,7 +2,9 @@ from flask import Blueprint
 from flask import *
 from flask import request
 from flask_cors import CORS
+import json
 import psycopg2
+import psycopg2.extras
 from getTestData import testSQL
 
 router = Blueprint('getTestData', __name__, url_prefix='/getTestData')
@@ -13,7 +15,7 @@ conn = psycopg2.connect(
     "host=localhost port=5432 dbname=testDataBase user=postgres password=test00")
 
 # カーソルを取得します
-cur = conn.cursor()
+cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 ###############################################################################################
 @router.route('/dataTest',methods=['GET', 'POST'])
@@ -46,10 +48,12 @@ def sqlData():
     sql = testSQL.sql
     cur.execute(sql)
     # 結果を1行だけ取得し表示
-    print(cur.fetchone())
+    #print(cur.fetchall())
+    result = cur.fetchall()
+    print (result)
     # カーソルを閉じる
-    cur.close()
-    return jsonify(message)
+    #cur.close()
+    return json.dumps(result, indent=4)
     
 ###############################################################################################
 if __name__ == "__main__":

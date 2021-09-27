@@ -1,7 +1,11 @@
 sql = '''
-        SELECT *
+    WITH tmp AS (
+        SELECT 
+            test01.id as id,
+            test01.name as name
         FROM test01."testUser" test01
-        WHERE test01.ID = 1
+    )
+    SELECT to_json(tmp) FROM tmp
     '''
     
 sqlstring = "getMozi"
