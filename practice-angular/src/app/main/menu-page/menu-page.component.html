@@ -2,8 +2,23 @@
   <p>menu-page works!</p>
   <button (click) = "getBackTestData()">実験</button><br>
   <button (click) = "getAndSendData()">実験2</button><br>
+  <button (click) = "getSQLData()">実験3</button><br>
   <li><a href="search/searchList"(click)="onClickSearch()">検索</a></li>
 
-  <div [innerHTML]='htmlString'></div>
+  <div *ngIf="showMessage" [innerHTML]='htmlString'></div>
+  <div *ngIf="showTable">
+    <table class="table" bordercolor="#000000">
+      <thead bordercolor="#000000">
+        <tr><th></th><th>ID</th><th>名前</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of resultSql; index as i">
+          <td>{{i + 1}}</td>
+          <td>{{result.testUser[0].id.value}}</td>
+          <td>{{result.testUser[0].name.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 

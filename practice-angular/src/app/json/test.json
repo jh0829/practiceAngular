@@ -1,0 +1,16 @@
+{
+	"testUser":[
+    {
+		  "id":{
+			  "name": "id",
+			  "value": "",
+        "show":true
+			},
+		  "name":{
+			  "name":"name",
+			  "value": "",
+        "show":true
+		  }
+    }
+  ]
+}

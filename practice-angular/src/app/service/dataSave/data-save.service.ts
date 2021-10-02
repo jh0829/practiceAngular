@@ -27,4 +27,11 @@ export class DataSaveService {
     var data = this.bds.getPosttData(this.uri,json)
     return data;
   }
+
+  getSQLData() {
+    console.log("getSQLData Start")
+    this.uri = "getTestData/sqlData";
+    var data = this.bds.getTestData(this.uri)
+    return data;
+  }
 }
