@@ -59,7 +59,6 @@ export class BackDataService {
       if (request.status === 200) {
         // JSON変換
         var resultData = JSON.parse(request.responseText);
-        console.log(resultData);
         return resultData;
       } else {
         console.log('error!');

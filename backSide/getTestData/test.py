@@ -48,7 +48,7 @@ def sqlData():
     sql = testSQL.sql
     cur.execute(sql)
     # 結果を1行だけ取得し表示
-    #print(cur.fetchall())
+    # print(cur.fetchall())
     result = cur.fetchall()
     print (result)
     # カーソルを閉じる
