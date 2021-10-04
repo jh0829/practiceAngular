@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { userInfo } from 'os';
 import { BackDataService } from 'src/app/service/backData/back-data.service';
 
 
