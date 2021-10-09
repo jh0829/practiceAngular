@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 // 通信系
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
+// サイドバー
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 // コンポーネント
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +15,8 @@ import { MenuPageComponent } from './main/menu-page/menu-page.component';
 import { GetDataComponent } from './data/get-data/get-data.component';
 import { FirstPageComponent } from './main/first-page/first-page.component';
 import { SearchListComponent } from './search/search-list/search-list.component';
+import { HeaderComponent } from './search/header/header.component';
+import { SearchHomeComponent } from './search/search-home/search-home.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +24,17 @@ import { SearchListComponent } from './search/search-list/search-list.component'
     MenuPageComponent,
     GetDataComponent,
     FirstPageComponent,
-    SearchListComponent
+    SearchListComponent,
+    HeaderComponent,
+    SearchHomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientXsrfModule
+    HttpClientXsrfModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

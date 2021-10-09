@@ -30,7 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -97,13 +97,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "schematics": {
+    "@nrwl/schematics:component": {
+      "styleext": "scss"
+    },
+    "@schematics/angular:component": {}
   },
   "defaultProject": "practice-angular"
 }
