@@ -3,7 +3,7 @@
   <button (click) = "getBackTestData()">実験</button><br>
   <button (click) = "getAndSendData()">実験2</button><br>
   <button (click) = "getSQLData()">実験3(select文）</button><br>
-  <li><a href="search/searchList"(click)="onClickSearch()">次の実験ページへ</a></li>
+  <li><a href="search/searchHome"(click)="onClickSearch()">次の実験ページへ</a></li>
 
   <div *ngIf="showMessage" [innerHTML]='htmlString'></div>
   <div *ngIf="showTable">

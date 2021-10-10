@@ -7,6 +7,8 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 // サイドバー
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 // コンポーネント
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +36,9 @@ import { SearchHomeComponent } from './search/search-home/search-home.component'
     HttpClientModule,
     HttpClientXsrfModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
