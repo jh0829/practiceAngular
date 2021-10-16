@@ -16,9 +16,9 @@ import { AppComponent } from './app.component';
 import { MenuPageComponent } from './main/menu-page/menu-page.component';
 import { GetDataComponent } from './data/get-data/get-data.component';
 import { FirstPageComponent } from './main/first-page/first-page.component';
-import { SearchListComponent } from './search/search-list/search-list.component';
-import { HeaderComponent } from './search/header/header.component';
-import { SearchHomeComponent } from './search/search-home/search-home.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,6 @@ import { SearchHomeComponent } from './search/search-home/search-home.component'
     MenuPageComponent,
     GetDataComponent,
     FirstPageComponent,
-    SearchListComponent,
-    HeaderComponent,
-    SearchHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +35,10 @@ import { SearchHomeComponent } from './search/search-home/search-home.component'
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    LayoutModule,
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
