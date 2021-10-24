@@ -43,7 +43,6 @@ def postData():
 @router.route('/sqlData',methods=['GET', 'POST'])
 def sqlData():
     print ('sqlData start')
-    message = {'greeting':'Hello from Flask!'}
     # SQLを取得し、実行
     sql = testSQL.sql
     cur.execute(sql)

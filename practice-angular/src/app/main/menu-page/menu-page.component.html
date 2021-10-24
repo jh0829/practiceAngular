@@ -1,9 +1,9 @@
 <script src="{{ url_for('static', filename='main.js') }}"></script>
-  <p>menu-page works!</p>
+  <p>バックエンド実験ページ!</p>
   <button (click) = "getBackTestData()">実験</button><br>
   <button (click) = "getAndSendData()">実験2</button><br>
-  <button (click) = "getSQLData()">実験3</button><br>
-  <li><a href="search/searchList"(click)="onClickSearch()">検索</a></li>
+  <button (click) = "getSQLData()">実験3(select文）</button><br>
+  <li><a href="main/search"(click)="onClickSearch()">次の実験ページへ</a></li>
 
   <div *ngIf="showMessage" [innerHTML]='htmlString'></div>
   <div *ngIf="showTable">
