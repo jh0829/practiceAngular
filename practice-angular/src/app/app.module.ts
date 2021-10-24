@@ -19,6 +19,9 @@ import { FirstPageComponent } from './main/first-page/first-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchTopComponent } from './search/search-top/search-top.component';
+import { SideMenuComponent } from './search/side-menu/side-menu.component';
+import { SearchListUserComponent } from './search/search-list-user/search-list-user.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MenuPageComponent,
     GetDataComponent,
     FirstPageComponent,
+    SearchTopComponent,
+    SideMenuComponent,
+    SearchListUserComponent,
   ],
   imports: [
     BrowserModule,
