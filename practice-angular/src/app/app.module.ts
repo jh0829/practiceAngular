@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchTopComponent } from './search/search-top/search-top.component';
 import { SideMenuComponent } from './search/side-menu/side-menu.component';
 import { SearchListUserComponent } from './search/search-list-user/search-list-user.component';
+import { SearchMenuComponent } from './search/search-menu/search-menu.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SearchListUserComponent } from './search/search-list-user/search-list-u
     SearchTopComponent,
     SideMenuComponent,
     SearchListUserComponent,
+    SearchMenuComponent,
   ],
   imports: [
     BrowserModule,

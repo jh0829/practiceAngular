@@ -1,0 +1,19 @@
+{
+  "userList":
+  {
+    "userId":{
+      "name": "userId",
+      "value": "",
+      "key": "userId",
+      "view":"text",
+      "show":true
+    },
+    "liveArea":[{
+      "name":"liveArea",
+      "value": "",
+      "key":"",
+      "view":"list",
+      "show":true
+    }]
+  }
+}

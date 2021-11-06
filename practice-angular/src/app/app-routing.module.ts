@@ -7,6 +7,7 @@ import { MenuPageComponent } from '../app/main/menu-page/menu-page.component';
 import { SearchTopComponent } from '../app/search/search-top/search-top.component'
 import { SearchListUserComponent } from '../app/search/search-list-user/search-list-user.component'
 import { SideMenuComponent } from '../app/search/side-menu/side-menu.component'
+import { SearchMenuComponent } from '../app/search/search-menu/search-menu.component'
 
 const routes: Routes = [
   { path: 'firstPage', redirectTo: '', pathMatch: 'full'},
@@ -16,10 +17,14 @@ const routes: Routes = [
   { path: 'main/side',
     component: SideMenuComponent,
       children: [
-        {
+      {
         path: 'user',
         component: SearchListUserComponent
-      }
+      },
+      {
+        path: 'menu',
+        component: SearchMenuComponent
+      },
     ]
   },
 ];

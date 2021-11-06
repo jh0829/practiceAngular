@@ -33,4 +33,11 @@ export class DataSaveService {
     var data = this.bds.getTestData(this.uri)
     return data;
   }
+
+  getSearchLiveData() {
+    console.log("getSearchLiveData Start")
+    this.uri = "getSearchData/liveData";
+    var data = this.bds.getTestData(this.uri)
+    return data;
+  }
 }
