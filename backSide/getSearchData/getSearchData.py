@@ -18,8 +18,8 @@ conn = psycopg2.connect(
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 ###############################################################################################
-@router.route('/liveData',methods=['GET', 'POST'])
-def sqlData():
+@router.route('/liveArea',methods=['GET', 'POST'])
+def sqlLiveData():
     print ('sqlData start')
     # SQLを取得し、実行
     sql = searchDataSQL.liveData
@@ -33,5 +33,21 @@ def sqlData():
     return json.dumps(result, indent=4)
     
 ###############################################################################################
+@router.route('/userJob',methods=['GET', 'POST'])
+def sqlJobData():
+    print ('sqlData start')
+    # SQLを取得し、実行
+    sql = searchDataSQL.jobData
+    cur.execute(sql)
+    # 結果を1行だけ取得し表示
+    # print(cur.fetchall())
+    result = cur.fetchall()
+    print (result)
+    # カーソルを閉じる
+    #cur.close()
+    return json.dumps(result, indent=4)
+    
+###############################################################################################
+
 if __name__ == "__main__":
     router.run(debug=True)

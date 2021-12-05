@@ -7,6 +7,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module'
 import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import jsonSearchMenu from 'src/app/json/searchMenu.json';
 
 /**
  * 検索項目を作成するクラス
@@ -22,6 +23,8 @@ export class SearchMenuComponent implements OnInit {
   // html 反映用
   htmlString = "";
   resultSql = Array();
+  searchMenu = {};
+  selectedMenu ="";
 
   constructor(
     private dss: DataSaveService,
@@ -31,21 +34,28 @@ export class SearchMenuComponent implements OnInit {
 
   ngOnInit(): void {
     // 選択したメニューを取得
-    const chooseMenu = this.route.snapshot.paramMap.get('selectedMenu');
-    switch (chooseMenu){
+    const selectMenu = this.route.snapshot.paramMap.get('selectedMenu');
+    switch (selectMenu){
       case 'userList':
-        this.choseUserList();
+        this.UserList(selectMenu);
       break
       default:
         console.log('その他')
     }
   }
 
-  choseUserList(){
+  UserList(selectMenu:string){
     console.log('start choseUserList');
-    var result =this.dss.getSearchLiveData();
-    console.log(result);
+    this.searchMenu  =this.dss.getUserListSearchMenuData(selectMenu,jsonSearchMenu);
+    console.log(this.searchMenu);
+    // 選択したメニュー
+    //this.selectedMenu = selectMenu
+    // メニューに対するJSON
+    //this.searchMenu = result[selectMenu];
   }
+
+  // メニューを作成
+
 }
 
 
