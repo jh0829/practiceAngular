@@ -4,11 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 // 通信系
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
-// サイドバー
+// マテリアル
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // コンポーネント
 import { AppRoutingModule } from './app-routing.module';
@@ -44,9 +47,14 @@ import { SearchMenuComponent } from './search/search-menu/search-menu.component'
     MatListModule,
     MatButtonModule,
     MatToolbarModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     LayoutModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
