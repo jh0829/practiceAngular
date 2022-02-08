@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackDataService } from 'src/app/service/backData/back-data.service';
+import { DataSelectService } from 'src/app/service/dataSelect/data-select.service';
 
 
 @Injectable({
@@ -8,11 +9,17 @@ import { BackDataService } from 'src/app/service/backData/back-data.service';
 export class DataSaveService {
 
   constructor(
-    private bds: BackDataService
+    private bds: BackDataService,
+    private dataSelect:DataSelectService
   ) { }
 
   uri : string = ""
+    searchMenu: Array<string> = []
 
+/**
+ * 実験用１
+ * @returns
+ */
   getBackData() {
     console.log("getBackData Start")
     this.uri = "getTestData/dataTest";
@@ -20,6 +27,11 @@ export class DataSaveService {
     return data;
   }
 
+  /**
+   * 実験用２
+   * @param json
+   * @returns
+   */
   postBackData(json:any) {
     console.log("getBackData Start")
     this.uri = "getTestData/postData";
@@ -27,10 +39,41 @@ export class DataSaveService {
     return data;
   }
 
+  /**
+   * 実験用３
+   * @returns
+   */
   getSQLData() {
     console.log("getSQLData Start")
     this.uri = "getTestData/sqlData";
     var data = this.bds.getTestData(this.uri)
     return data;
+  }
+
+  /**
+   * ユーザ検索メニュー取得処理
+   * @param selectMenu 選択した画面のID
+   * @param searchJson 検索メニュー用のJSON
+   * @returns
+   */
+   getUserListSearchMenuData(selectMenu:string,searchJson:any) {
+    console.log("getSearchLiveData Start")
+    // 結果を取得し、メニュー用jsonに組み込む
+    // listの場合はAPIを実施
+    console.log(searchJson[selectMenu])
+    let viewSearchMenu = searchJson[selectMenu]
+    //JSONの検索メニュー分だけfor文を回す
+    for(let key in searchJson[selectMenu]){
+      // APIに繋がない検索項目は除外
+        if(searchJson[selectMenu][key].view !="text"){
+          this.uri = "getSearchData/" + key
+          console.log(this.uri)
+          this.searchMenu[key] = this.bds.getTestData(this.uri);
+        }
+    }
+    // APIの実施結果を格納する
+    viewSearchMenu = this.dataSelect.createSearchMenu(this.searchMenu,searchJson[selectMenu]);
+    console.log(viewSearchMenu)
+    return viewSearchMenu;
   }
 }

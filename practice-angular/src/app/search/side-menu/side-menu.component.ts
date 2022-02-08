@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SearchMenuComponent} from '../search-menu/search-menu.component'
 
 @Component({
   selector: 'side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss']
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit{
+
+  @ViewChild(SearchMenuComponent)searchMenu!: string;
+
+  ngOnInit() {}
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -22,8 +27,10 @@ export class SideMenuComponent {
     private router: Router
     ) {}
 
-  onSearchListUser() {
-    this.router.navigate(['main/side/user']);
+  onSearchListUser(selectMenu:string) {
+    this.searchMenu = selectMenu;
+    console.log(' Link1をクリック')
+    console.log(this.searchMenu)
+    this.router.navigate(['main/side/user',{selectedMenu:this.searchMenu}]);
   }
-
 }

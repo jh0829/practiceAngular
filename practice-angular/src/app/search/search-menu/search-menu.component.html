@@ -1,0 +1,13 @@
+<p>search-menu works!</p>
+<tbody>
+  <!-- NEXT TODO 場合分けが出来たから、ここからselectを作る-->
+  <div>{{ searchMenu['liveArea'][0].value | json }}</div>
+  <div *ngFor="let search of searchMenu | keyvalue; index as i">
+    <div *ngIf = "searchMenu[search.key].length == '1'; else elseBlock ">
+      {{search.key}} : {{searchMenu[search.key][0].value |json}}
+    </div>
+    <ng-template #elseBlock>
+      {{search.key}} :テキストで表示
+    </ng-template>
+  </div>
+</tbody>

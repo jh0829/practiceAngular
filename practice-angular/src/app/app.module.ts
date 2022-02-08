@@ -4,11 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 // 通信系
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
-// サイドバー
+// マテリアル
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // コンポーネント
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchTopComponent } from './search/search-top/search-top.component';
 import { SideMenuComponent } from './search/side-menu/side-menu.component';
 import { SearchListUserComponent } from './search/search-list-user/search-list-user.component';
+import { SearchMenuComponent } from './search/search-menu/search-menu.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { SearchListUserComponent } from './search/search-list-user/search-list-u
     SearchTopComponent,
     SideMenuComponent,
     SearchListUserComponent,
+    SearchMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +47,14 @@ import { SearchListUserComponent } from './search/search-list-user/search-list-u
     MatListModule,
     MatButtonModule,
     MatToolbarModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     LayoutModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
