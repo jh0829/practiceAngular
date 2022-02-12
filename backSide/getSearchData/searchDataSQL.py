@@ -4,7 +4,7 @@ liveData = '''
             "ID", 
             "Area"
 	    FROM 
-            test01."liveArea"
+            "liveArea"
 	    order by 
             "ID"
     )
@@ -17,7 +17,7 @@ jobData = '''
             "ID", 
             "Job"
 	    FROM 
-            test01."userJob"
+            "userJob"
 	    order by 
             "ID"
     )

@@ -12,7 +12,7 @@ CORS(router)
 
 # DB Connect
 conn = psycopg2.connect(
-    "host=localhost port=5432 dbname=testDataBase user=postgres password=test00")
+    "host=localhost port=5432 dbname=postgres user=postgres password=test00")
 
 # カーソルを取得します
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
