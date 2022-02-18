@@ -3,7 +3,7 @@ sql = '''
         SELECT 
             id as id,
             name as name
-        FROM "testUser" 
+        FROM "testuser" 
     )
     SELECT to_json(tmp) FROM tmp
     '''
@@ -12,6 +12,6 @@ result = '''
     SELECT 
         id as id,
         name as name
-    FROM "testUser" 
+    FROM "testuser" 
     '''
 sqlstring = "getMozi"

@@ -2,21 +2,21 @@
   "userList":
   {
     "userId":{
-      "name": "userId",
+      "name": "userid",
       "value": "",
-      "key": "userId",
+      "key": "userid",
       "view":"text",
       "show":true
     },
     "liveArea":[{
-      "name":"liveArea",
+      "name":"livearea",
       "value": "",
       "key":"",
       "view":"list",
       "show":true
     }],
     "userJob":[{
-      "name":"userJob",
+      "name":"userjob",
       "value": "",
       "key":"",
       "view":"list",
