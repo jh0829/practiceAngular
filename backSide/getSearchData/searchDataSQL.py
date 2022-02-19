@@ -2,7 +2,7 @@ liveData = '''
     WITH tmp AS (
         SELECT 
             "id", 
-            "area_name"
+            "name"
 	    FROM 
             "livearea"
 	    order by 
@@ -15,7 +15,7 @@ jobData = '''
     WITH tmp AS (
         SELECT 
             "id", 
-            "job"
+            "name"
 	    FROM 
             "userjob"
 	    order by 

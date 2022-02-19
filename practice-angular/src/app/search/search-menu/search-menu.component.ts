@@ -30,9 +30,7 @@ export class SearchMenuComponent implements OnInit {
     private dss: DataSaveService,
     private dsele: DataSelectService,
     private route: ActivatedRoute
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     // 選択したメニューを取得
     const selectMenu = this.route.snapshot.paramMap.get('selectedMenu');
     switch (selectMenu){
@@ -44,10 +42,13 @@ export class SearchMenuComponent implements OnInit {
     }
   }
 
+  ngOnInit(): void {
+  }
+
   UserList(selectMenu:string){
     console.log('start choseUserList');
     this.searchMenu  =this.dss.getUserListSearchMenuData(selectMenu,jsonSearchMenu);
-    console.log(this.searchMenu);
+    console.log('検索メニュー用',this.searchMenu);
     // 選択したメニュー
     //this.selectedMenu = selectMenu
     // メニューに対するJSON
