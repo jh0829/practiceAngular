@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import jsonSearchMenu from 'src/app/json/searchMenu.json';
-
+import { FormControl } from '@angular/forms';
 /**
  * 検索項目を作成するクラス
  */
@@ -26,6 +26,7 @@ export class SearchMenuComponent implements OnInit {
   searchMenu = {};
   selectedMenu ="";
 
+  public ngxControl = new FormControl();
   constructor(
     private dss: DataSaveService,
     private dsele: DataSelectService,

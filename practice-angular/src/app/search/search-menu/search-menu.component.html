@@ -1,16 +1,42 @@
 <p>検索メニュー</p>
-<tbody>
+<form>
+  <!-- TODO valueを外さないと表示されない不具合（10行目） -->
   <span *ngFor="let search of searchMenu | keyvalue; index as i">
-    <span *ngIf = "searchMenu[search.key].length == '1'; else elseBlock ">   
-      <select>
-        <option *ngFor="let cnt of searchMenu[search.key][0].value | keyvalue; index as i"
-        value="{{ searchMenu[search.key][0].value[cnt.key][0].id}}">
-          {{ searchMenu[search.key][0].value[cnt.key][0].name }}
-        </option>
-      </select>
+    {{searchMenu[search.key].length}}
+    
+    <span *ngIf = "searchMenu[search.key].length == '1'; else elseBlock ">
+      {{searchMenu[search.key][0].view}} 
+      <!-- <ngx-select 
+        [formControl]="ngxControl"
+        [allowClear]="true"
+        [defaultValue]="doNgxDefault()"
+        placeholder="No city selected"
+        (typed)="inputTyped('ngx-select', $event)"
+        >
+      </ngx-select> -->
+
+
+      <mat-form-field>
+        <mat-label>{{searchMenu[search.key][0].valueName}}</mat-label>
+        <mat-select  appearance="fill">
+          <mat-option></mat-option>
+          <mat-option
+            *ngFor="let cnt of searchMenu[search.key][0].value | keyvalue; index as i"
+            value="{{ searchMenu[search.key][0].value[cnt.key][0].id}}"
+          >
+            {{ searchMenu[search.key][0].value[cnt.key][0].name }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
     </span>
-    <ng-template #elseBlock>
-      {{search.key}} :テキストで表示
-    </ng-template>
+    <!-- </mat-form-field> -->
+     <ng-template #elseBlock>
+          
+          <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="Sushi">
+    <!-- <input matInput placeholder="searchMenu[search.key][0].value[cnt.key][0].id" value=""> -->
+    
+     </ng-template>
   </span>
-</tbody>
+</form>
