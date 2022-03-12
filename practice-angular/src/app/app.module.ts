@@ -7,6 +7,7 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 // マテリアル
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -46,6 +47,7 @@ import { SearchMenuComponent } from './search/search-menu/search-menu.component'
     HttpClientXsrfModule,
     MatSidenavModule,
     MatListModule,
+    MatInputModule,
     MatButtonModule,
     MatToolbarModule,
     MatNativeDateModule,

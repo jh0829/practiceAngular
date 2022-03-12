@@ -9,22 +9,22 @@
       "show":true,
       "valueName":"ユーザID"
     },
-    "liveArea":[{
+    "liveArea":{
       "name":"livearea",
       "value": "",
       "key":"",
       "view":"list",
       "show":true,
       "valueName":"所在地"
-    }],
-    "userJob":[{
+    },
+    "userJob":{
       "name":"userjob",
       "value": "",
       "key":"",
       "view":"list",
       "show":true,
       "valueName":"職業"
-    }]
+    }
   },
   "dummy":
   {

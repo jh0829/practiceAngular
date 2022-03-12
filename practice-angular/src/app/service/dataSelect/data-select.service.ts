@@ -17,8 +17,7 @@ export class DataSelectService {
   createSearchMenu(searchMenu:Array<string>,searchJson:any){
     //取得した検索項目分ループする
     for(let key in searchMenu){
-      console.log(key)
-      searchJson[key][0].value = searchMenu[key]
+      searchJson[key].value = searchMenu[key]
     }
     return searchJson;
   }

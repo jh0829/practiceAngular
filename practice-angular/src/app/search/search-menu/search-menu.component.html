@@ -1,42 +1,27 @@
 <p>検索メニュー</p>
 <form>
-  <!-- TODO valueを外さないと表示されない不具合（10行目） -->
-  <span *ngFor="let search of searchMenu | keyvalue; index as i">
-    {{searchMenu[search.key].length}}
-    
-    <span *ngIf = "searchMenu[search.key].length == '1'; else elseBlock ">
-      {{searchMenu[search.key][0].view}} 
-      <!-- <ngx-select 
-        [formControl]="ngxControl"
-        [allowClear]="true"
-        [defaultValue]="doNgxDefault()"
-        placeholder="No city selected"
-        (typed)="inputTyped('ngx-select', $event)"
-        >
-      </ngx-select> -->
-
-
-      <mat-form-field>
-        <mat-label>{{searchMenu[search.key][0].valueName}}</mat-label>
-        <mat-select  appearance="fill">
-          <mat-option></mat-option>
-          <mat-option
-            *ngFor="let cnt of searchMenu[search.key][0].value | keyvalue; index as i"
-            value="{{ searchMenu[search.key][0].value[cnt.key][0].id}}"
-          >
-            {{ searchMenu[search.key][0].value[cnt.key][0].name }}
-          </mat-option>
-        </mat-select>
-
-      </mat-form-field>
+  <span *ngFor="let search of searchMenu | keyvalue; index as i">  
+    <span>
+      <ng-container *ngIf="searchMenu[search.key].view == 'list'">
+        <mat-form-field>
+          <mat-label>{{searchMenu[search.key].valueName}}</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+            <mat-option
+              *ngFor="let cnt of searchMenu[search.key].value | keyvalue; index as i"
+              value="{{ searchMenu[search.key].value[cnt.key][0].id}}"
+            >
+            {{ searchMenu[search.key].value[cnt.key][0].name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="searchMenu[search.key].view == 'text'">
+        <mat-form-field>
+          <mat-label>{{searchMenu[search.key].valueName}}</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </ng-container>
     </span>
-    <!-- </mat-form-field> -->
-     <ng-template #elseBlock>
-          
-          <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
-    <!-- <input matInput placeholder="searchMenu[search.key][0].value[cnt.key][0].id" value=""> -->
-    
-     </ng-template>
   </span>
 </form>
