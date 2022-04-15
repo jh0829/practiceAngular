@@ -5,3 +5,8 @@ select::placeholder {
   .search-input-full-width {
     width: 100%;
   }
+
+  .button-row {
+    display: table-cell;
+    width: 490px;
+  }
