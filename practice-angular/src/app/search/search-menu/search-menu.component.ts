@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataSaveService } from 'src/app/service/dataSave/data-save.service';
 import { DataSelectService } from 'src/app/service/dataSelect/data-select.service';
 import { MakeFormService } from 'src/app/service/makeForm/make-form.service';
+import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service';
 
 import { Input } from '@angular/core';
 import { AppRoutingModule } from 'src/app/app-routing.module'
@@ -37,7 +38,8 @@ export class SearchMenuComponent implements OnInit {
     private dsele: DataSelectService,
     private makeForm: MakeFormService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private valueSharedService: ValueSharedService
   ) {
     // form
     this.searchForm = this.fb.group({});
@@ -68,9 +70,11 @@ export class SearchMenuComponent implements OnInit {
     //this.searchMenu = result[selectMenu];
   }
 
-  // 検索 todo 検索方法について
+  // 検索ボタン押下
   searchList(){
     console.log('中身確認',this.searchForm.getRawValue())
+    // 検索項目をセット
+    this.valueSharedService.setSearchValue(this.searchForm.getRawValue())
   }
 
 }
