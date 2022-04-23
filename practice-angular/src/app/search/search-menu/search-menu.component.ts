@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSaveService } from 'src/app/service/dataSave/data-save.service';
-import { DataSelectService } from 'src/app/service/dataSelect/data-select.service'
+import { DataSelectService } from 'src/app/service/dataSelect/data-select.service';
+import { MakeFormService } from 'src/app/service/makeForm/make-form.service';
+import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service';
+
 import { Input } from '@angular/core';
 import { AppRoutingModule } from 'src/app/app-routing.module'
 
@@ -8,7 +11,7 @@ import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import jsonSearchMenu from 'src/app/json/searchMenu.json';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 /**
  * 検索項目を作成するクラス
  */
@@ -18,20 +21,28 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./search-menu.component.scss']
 })
 export class SearchMenuComponent implements OnInit {
+  // form
+  @Input()
+  searchForm: FormGroup;
 
   //@Input() selectMenu: string;
   // html 反映用
   htmlString = "";
   resultSql = Array();
   searchMenu = {};
-  selectedMenu ="";
+  selectedMenu = "";
 
   public ngxControl = new FormControl();
   constructor(
     private dss: DataSaveService,
     private dsele: DataSelectService,
-    private route: ActivatedRoute
+    private makeForm: MakeFormService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private valueSharedService: ValueSharedService
   ) {
+    // form
+    this.searchForm = this.fb.group({});
     // 選択したメニューを取得
     const selectMenu = this.route.snapshot.paramMap.get('selectedMenu');
     switch (selectMenu){
@@ -48,15 +59,23 @@ export class SearchMenuComponent implements OnInit {
 
   UserList(selectMenu:string){
     console.log('start choseUserList');
-    this.searchMenu  =this.dss.getUserListSearchMenuData(selectMenu,jsonSearchMenu);
+    this.searchMenu = this.dss.getUserListSearchMenuData(selectMenu,jsonSearchMenu);
+    //this.searchForm = this.makeForm.makeForm(jsonSearchMenu,this.searchForm);
+    this.searchForm = this.makeForm.makeForm(jsonSearchMenu,this.searchForm,selectMenu);
     console.log('検索メニュー用',this.searchMenu);
+    console.log('Form',this.searchForm);
     // 選択したメニュー
     //this.selectedMenu = selectMenu
     // メニューに対するJSON
     //this.searchMenu = result[selectMenu];
   }
 
-  // メニューを作成
+  // 検索ボタン押下
+  searchList(){
+    console.log('中身確認',this.searchForm.getRawValue())
+    // 検索項目をセット
+    this.valueSharedService.setSearchValue(this.searchForm.getRawValue())
+  }
 
 }
 
