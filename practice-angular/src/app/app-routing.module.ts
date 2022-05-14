@@ -16,14 +16,16 @@ const routes: Routes = [
   { path: 'main/search', component: SearchTopComponent },
   { path: 'main/side',
     component: SideMenuComponent,
-      children: [
+    children: [
       {
         path: 'user',
-        component: SearchListUserComponent
-      },
-      {
-        path: 'menu',
-        component: SearchMenuComponent
+        component: SearchListUserComponent,
+        children: [
+          {
+            path: 'menu',
+            component: SearchMenuComponent,
+          },
+        ]
       },
     ]
   },

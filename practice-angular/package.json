@@ -27,9 +27,11 @@
     "crypto-browserify": "^3.12.0",
     "dotenv-webpack": "^7.0.3",
     "esbuild": "^0.12.29",
+    "express": "^4.18.1",
     "ngx-select-ex": "^8.0.1",
     "node": "^16.10.0",
     "node-jose-browserify": "^1.1.14",
+    "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "python-shell": "^3.0.1",
     "require": "^2.4.20",
@@ -52,9 +54,11 @@
     "@types/node": "^12.20.27",
     "@types/react-test-renderer": "^17.0.1",
     "@types/webpack-env": "^1.16.2",
+    "axios": "^0.27.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
+    "fkill": "^8.0.1",
     "jasmine": "^3.9.0",
     "jasmine-browser-runner": "^0.8.0",
     "jasmine-core": "^3.8.0",
@@ -65,6 +69,8 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "localtunnel": "^2.0.2",
+    "ngrok": "^4.3.1",
     "node-sass": "^6.0.1",
     "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.0.5",
@@ -81,5 +87,9 @@
     "tls": false,
     "crypto": false,
     "zlib": false
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.",
+  "main": "karma.conf.js",
+  "author": "",
+  "license": "ISC"
 }

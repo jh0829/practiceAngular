@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class ValueSharedService {
   //　検索項目
-  searchValue ={};
+  searchValue = {};
+  //  遷移先ページ
+  pageAdd = ""
 
   setSearchValue(searchvalue:any){
     this.searchValue = searchvalue;
@@ -14,4 +16,13 @@ export class ValueSharedService {
   getSerachValue(){
     return this.searchValue;
   }
+
+  setPageAdd(pageadd:any){
+    this.pageAdd = pageadd;
+  }
+
+  getPageAdd(){
+    return this.pageAdd
+  }
+
 }

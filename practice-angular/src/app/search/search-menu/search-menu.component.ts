@@ -38,13 +38,14 @@ export class SearchMenuComponent implements OnInit {
     private dsele: DataSelectService,
     private makeForm: MakeFormService,
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private valueSharedService: ValueSharedService
   ) {
     // form
     this.searchForm = this.fb.group({});
     // 選択したメニューを取得
-    const selectMenu = this.route.snapshot.paramMap.get('selectedMenu');
+    const selectMenu = valueSharedService.getPageAdd()//this.route.snapshot.paramMap.get('selectedMenu');
     switch (selectMenu){
       case 'userList':
         this.UserList(selectMenu);
@@ -75,6 +76,7 @@ export class SearchMenuComponent implements OnInit {
     console.log('中身確認',this.searchForm.getRawValue())
     // 検索項目をセット
     this.valueSharedService.setSearchValue(this.searchForm.getRawValue())
+    //this.router.navigate(['main/side/menu/user']);
   }
 
 }
