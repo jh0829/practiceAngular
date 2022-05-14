@@ -31,6 +31,6 @@ export class SideMenuComponent implements OnInit{
     this.searchMenu = selectMenu;
     console.log(' Link1をクリック')
     console.log(this.searchMenu)
-    this.router.navigate(['main/side/user',{selectedMenu:this.searchMenu}]);
+    this.router.navigate(['main/side/user/menu',{selectedMenu:this.searchMenu}]);
   }
 }

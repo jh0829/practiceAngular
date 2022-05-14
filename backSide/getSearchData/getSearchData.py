@@ -46,6 +46,21 @@ def sqlJobData():
     # カーソルを閉じる
     #cur.close()
     return json.dumps(result, indent=4)
+
+###############################################################################################
+@router.route('/searchUserData',methods=['GET', 'POST'])
+def searchUserData():
+    print ('search start')
+    # SQLを取得し、実行
+    sql = searchDataSQL.jobData
+    cur.execute(sql)
+    # 結果を1行だけ取得し表示
+    # print(cur.fetchall())
+    result = cur.fetchall()
+    print (result)
+    # カーソルを閉じる
+    #cur.close()
+    return json.dumps(result, indent=4)
     
 ###############################################################################################
 

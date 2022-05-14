@@ -7,8 +7,9 @@ import { HttpClient } from '@angular/common/http';
 export class BackDataService {
   constructor(private http: HttpClient) {}
 
-  flaskIp = 'http://127.0.0.1:5000/'
-
+  backIP='';
+  flaskIp = this.backIP ||'http://127.0.0.1:5000/'
+  
   ngOnInit() {}
 
   /**

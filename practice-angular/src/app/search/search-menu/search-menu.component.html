@@ -1,13 +1,36 @@
-<p>search-menu works!</p>
-<tbody>
-  <!-- NEXT TODO 場合分けが出来たから、ここからselectを作る-->
-  <div>{{ searchMenu['liveArea'][0].value | json }}</div>
-  <div *ngFor="let search of searchMenu | keyvalue; index as i">
-    <div *ngIf = "searchMenu[search.key].length == '1'; else elseBlock ">
-      {{search.key}} : {{searchMenu[search.key][0].value |json}}
-    </div>
-    <ng-template #elseBlock>
-      {{search.key}} :テキストで表示
-    </ng-template>
+<p>検索メニュー</p>
+<form 
+  [formGroup]="searchForm"
+  (ngSubmit)="searchList()"
+  #createNgForm="ngForm">
+  <span *ngFor="let search of searchMenu | keyvalue; index as i">  
+    <span>
+      {{search.key}}
+      <ng-container *ngIf="searchMenu[search.key].view == 'list'">
+        <mat-form-field>
+          <mat-label>{{searchMenu[search.key].valueName}}</mat-label>
+          <mat-select formControlName={{search.key}} >
+            <mat-option></mat-option>
+            <mat-option
+              *ngFor="let cnt of searchMenu[search.key].value | keyvalue; index as i"
+              value="{{ searchMenu[search.key].value[cnt.key][0].id}}"
+            >
+            {{ searchMenu[search.key].value[cnt.key][0].name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="searchMenu[search.key].view == 'text'">
+        <mat-form-field>
+          <mat-label>{{searchMenu[search.key].valueName}}</mat-label>
+          <input matInput  formControlName={{search.key}} value="" >
+        </mat-form-field>
+      </ng-container> 
+    </span>
+  </span>
+  <section>
+  <div class="button-row">
+    <button mat-button color="primary">検索ボタン</button>
   </div>
-</tbody>
+</section>
+</form>

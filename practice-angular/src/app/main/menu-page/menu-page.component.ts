@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSaveService } from 'src/app/service/dataSave/data-save.service';
+import { GetIpAddressService } from 'src/app/service/getIpAddress/get-ip-address.service';
 import test from 'src/app/json/test.json';
 
 @Component({
@@ -16,8 +17,13 @@ export class MenuPageComponent implements OnInit {
   showMessage = false;
 
   constructor(
-    private dss: DataSaveService
-    ) {}
+    private dss: DataSaveService,
+    private gip: GetIpAddressService
+    ) {
+      console.log('メインページに到着')
+      //const ip = gip.getAddress();
+      // console.log('ipの確認',ip)
+    }
 
   ngOnInit(): void {
     this.showTable = false;

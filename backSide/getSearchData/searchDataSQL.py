@@ -1,12 +1,12 @@
 liveData = '''
     WITH tmp AS (
         SELECT 
-            "ID", 
-            "Area"
+            "id", 
+            "name"
 	    FROM 
-            "liveArea"
+            "livearea"
 	    order by 
-            "ID"
+            "id"
     )
     SELECT to_json(tmp) FROM tmp
     '''
@@ -14,12 +14,12 @@ liveData = '''
 jobData = '''
     WITH tmp AS (
         SELECT 
-            "ID", 
-            "Job"
+            "id", 
+            "name"
 	    FROM 
-            "userJob"
+            "userjob"
 	    order by 
-            "ID"
+            "id"
     )
     SELECT to_json(tmp) FROM tmp
     '''
