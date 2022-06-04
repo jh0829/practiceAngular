@@ -3,7 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { SearchMenuComponent} from '../search-menu/search-menu.component'
+import { SearchMenuComponent } from '../search-menu/search-menu.component'
+import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service'
 
 @Component({
   selector: 'side-menu',
@@ -24,13 +25,16 @@ export class SideMenuComponent implements OnInit{
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router: Router
-    ) {}
+    private router: Router,
+    private valueSharedService: ValueSharedService,
+    ) {
+    }
 
   onSearchListUser(selectMenu:string) {
     this.searchMenu = selectMenu;
     console.log(' Link1をクリック')
     console.log(this.searchMenu)
-    this.router.navigate(['main/side/user/menu',{selectedMenu:this.searchMenu}]);
+    this.valueSharedService.setPageAdd(this.searchMenu);
+    this.router.navigate(['main/side/menu/user',{selectedMenu:this.searchMenu}]);
   }
 }
