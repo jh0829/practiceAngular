@@ -48,20 +48,23 @@ def sqlJobData():
     return json.dumps(result, indent=4)
 
 ###############################################################################################
-@router.route('/searchUserData',methods=['GET', 'POST'])
+@router.route('/userList',methods=['GET','POST'])
 def searchUserData():
-    print ('search start')
-    # SQLを取得し、実行
-    sql = searchDataSQL.jobData
-    cur.execute(sql)
-    # 結果を1行だけ取得し表示
-    # print(cur.fetchall())
+    print ('ユーザ検索実行しているか')
+    # JSON 取得
+    req = request.get_json()
+    print(req)
+    print(req["userId"])
+    # SQL文を呼び出し
+    sql = searchDataSQL.userListData
+    # WHERE句を差し替える
+    rsql = sql.replace('*userId', req["userId"])
+    print(rsql)
+    cur.execute(rsql)
     result = cur.fetchall()
     print (result)
-    # カーソルを閉じる
-    #cur.close()
+
     return json.dumps(result, indent=4)
-    
 ###############################################################################################
 
 if __name__ == "__main__":

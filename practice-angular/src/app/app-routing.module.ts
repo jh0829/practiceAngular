@@ -18,12 +18,12 @@ const routes: Routes = [
     component: SideMenuComponent,
     children: [
       {
-        path: 'user',
-        component: SearchListUserComponent,
+        path: 'menu',
+        component: SearchMenuComponent,
         children: [
           {
-            path: 'menu',
-            component: SearchMenuComponent,
+            path: 'user',
+            component: SearchListUserComponent,
           },
         ]
       },

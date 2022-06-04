@@ -1,5 +1,6 @@
 import { Injectable, ɵɵsetComponentScope } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as https from "https";
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class BackDataService {
   getTestData(getUri: string) {
     console.log('start getTestData');
     const url = this.flaskIp + getUri;
+    console.log(url)
     var request = new XMLHttpRequest();
     // `false` で同期リクエストになる
     request.open('GET', url, false);
@@ -69,5 +71,78 @@ export class BackDataService {
       var noData = { result: '接続エラー' };
       return noData;
     }
+  }
+
+  /**
+   * node.jsで検索実施（POST)
+   * @param getUrl 
+   * @param searchJson 
+   */
+  async searchList(getUrl:string,searchJson:any){
+    console.log("ここまで処理が来ているか",this.flaskIp + getUrl)
+    console.log("検索条件",searchJson)
+    try {
+      // 👇️ const response: Response
+      const response = await fetch(this.flaskIp + getUrl, {
+        method: 'POST',
+        body: searchJson,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+  
+      // 👇️ const result: CreateUserResponse
+      const result = (await response.json()) 
+      // as CreateUserResponse;
+  
+      console.log('result is: ', JSON.stringify(result, null, 4));
+  
+      return result;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log('error message: ', error.message);
+        return error.message;
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
+    
+    //const json = searchJson
+      // fetch(this.flaskIp + getUrl, {
+
+      //   method: 'POST',
+      //   headers: {
+      //    'content-type': 'application/json',
+      //   },
+      //   body: JSON.stringify(json),
+
+      // }).then(response => {
+      //  return response.json();
+      // }).then(res => {
+      //  console.log(res.items[0].volumeInfo.title);
+      //    }).catch(error => {
+      //      console.log(error);
+      // });
+
+
+    // const data = searchJson
+    // const options = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   }
+    // };
+    // const url = this.flaskIp + getUrl
+    // console.log(url)
+    // const request = https.request(url, options);
+    // request.write(data);
+    // request.end();
+
   }
 }

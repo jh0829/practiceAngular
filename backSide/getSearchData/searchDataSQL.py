@@ -23,3 +23,18 @@ jobData = '''
     )
     SELECT to_json(tmp) FROM tmp
     '''
+
+userListData = '''
+    WITH tmp AS (
+        SELECT
+	        tu.name AS userName
+	        ,job.name  AS jobName
+        FROM
+	        testuser tu
+        INNER JOIN userjob AS job on
+	        tu.job_id = job.id
+        WHERE
+            tu.id = '*userId'
+    )
+    SELECT to_json(tmp) FROM tmp
+    '''

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { DataSaveService } from 'src/app/service/dataSave/data-save.service';
 import { DataSelectService } from 'src/app/service/dataSelect/data-select.service';
 import { MakeFormService } from 'src/app/service/makeForm/make-form.service';
 import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service';
+
+import { SearchListUserComponent } from '../search-list-user/search-list-user.component'
 
 import { Input } from '@angular/core';
 import { AppRoutingModule } from 'src/app/app-routing.module'
@@ -24,6 +26,8 @@ export class SearchMenuComponent implements OnInit {
   // form
   @Input()
   searchForm: FormGroup;
+  @ViewChild(SearchListUserComponent)
+  protected childComponent!: SearchListUserComponent;
 
   //@Input() selectMenu: string;
   // html 反映用
@@ -44,8 +48,11 @@ export class SearchMenuComponent implements OnInit {
   ) {
     // form
     this.searchForm = this.fb.group({});
+  }
+
+  ngOnInit(): void {     
     // 選択したメニューを取得
-    const selectMenu = valueSharedService.getPageAdd()//this.route.snapshot.paramMap.get('selectedMenu');
+    const selectMenu = this.valueSharedService.getPageAdd()//this.route.snapshot.paramMap.get('selectedMenu');
     switch (selectMenu){
       case 'userList':
         this.UserList(selectMenu);
@@ -53,9 +60,6 @@ export class SearchMenuComponent implements OnInit {
       default:
         console.log('その他')
     }
-  }
-
-  ngOnInit(): void {
   }
 
   UserList(selectMenu:string){
@@ -73,10 +77,10 @@ export class SearchMenuComponent implements OnInit {
 
   // 検索ボタン押下
   searchList(){
-    console.log('中身確認',this.searchForm.getRawValue())
+    console.log('検索ボタン押下後',JSON.stringify(this.searchForm.getRawValue()))
     // 検索項目をセット
-    this.valueSharedService.setSearchValue(this.searchForm.getRawValue())
-    //this.router.navigate(['main/side/menu/user']);
+    this.valueSharedService.setSearchValue(JSON.stringify(this.searchForm.getRawValue()))
+    this.childComponent.searchUser();
   }
 
 }

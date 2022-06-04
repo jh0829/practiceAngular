@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BackDataService } from 'src/app/service/backData/back-data.service';
 import { DataSelectService } from 'src/app/service/dataSelect/data-select.service';
-
+import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,8 @@ export class DataSaveService {
 
   constructor(
     private bds: BackDataService,
-    private dataSelect:DataSelectService
+    private dataSelect:DataSelectService,
+    private shareData:ValueSharedService
   ) { }
 
   uri : string = ""
@@ -75,5 +76,17 @@ export class DataSaveService {
     viewSearchMenu = this.dataSelect.createSearchMenu(this.searchMenu,searchJson[selectMenu]);
     console.log(viewSearchMenu)
     return viewSearchMenu;
+  }
+
+  /**
+   * 検索処理
+   * @param searchList 
+   */
+  getSearchDataList(searchList:any){
+    // 検索するページID取得
+    const searchPage = "getSearchData/" + this.shareData.getPageAdd();
+    // 検索項目とページの取得に成功
+    this.bds.searchList(searchPage,searchList)
+
   }
 }
