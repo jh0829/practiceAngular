@@ -21,4 +21,23 @@ export class DataSelectService {
     }
     return searchJson;
   }
+
+  /**
+   * 一覧結果をJSONに格納
+   * @param searchMenu 複数選択肢あるメニュー項目
+   * @param resultJson 格納予定JSON
+   * @returns　全ての検索項目
+   */
+   async createSearchResult(searchResult:any,resultJson:any){
+    //
+    const reJson ={}
+    //取得した検索項目分ループする
+    for(let key in searchResult){
+      for(let inKey in searchResult[key]){
+        resultJson[inKey].value = searchResult[key][inKey]
+      } 
+      reJson[key] = resultJson
+    }
+    return reJson;
+  }
 }

@@ -15,7 +15,9 @@ export class DataSaveService {
   ) { }
 
   uri : string = ""
-    searchMenu: Array<string> = []
+  searchMenu: Array<string> = []
+  searchList: Array<string> = []
+  returnRsult: any
 
 /**
  * 実験用１
@@ -82,11 +84,20 @@ export class DataSaveService {
    * 検索処理
    * @param searchList 
    */
-  getSearchDataList(searchList:any){
+  async getSearchDataList(searchList:any,jsonSearchResult:any){
+    const pageAdd = this.shareData.getPageAdd()
+    let viewSearchMenu = jsonSearchResult[pageAdd]
     // 検索するページID取得
-    const searchPage = "getSearchData/" + this.shareData.getPageAdd();
+    const searchPage = "getSearchData/" + pageAdd
     // 検索項目とページの取得に成功
-    this.bds.searchList(searchPage,searchList)
-
+    this.returnRsult = await this.bds.searchList(searchPage,searchList)
+    // Arrayに変換
+    for(let key in this.returnRsult){
+      // 
+      this.searchList[key] = this.returnRsult[key][0]
+    }
+    // API実施結果を格納する
+    viewSearchMenu = await this.dataSelect.createSearchResult(this.searchList,viewSearchMenu);
+    return viewSearchMenu
   }
 }

@@ -13,6 +13,8 @@ import { DepFlags } from '@angular/compiler/src/core';
 export class SearchListUserComponent implements OnInit {
   pageAdd = 'userList'
   searchList = {}
+  pageAdress = ''
+  result = {}
 
   constructor(
     private route: ActivatedRoute,
@@ -30,10 +32,11 @@ export class SearchListUserComponent implements OnInit {
   /**
    * ユーザデータ検索
    */
-  searchUser(){
+  async searchUser(jsonSearchResult:any){
     console.log('検索開始')
     this.searchList = this.valueSharedService.getSerachValue()
-    this.ds.getSearchDataList(this.searchList)
+    this.result = await  this.ds.getSearchDataList(this.searchList,jsonSearchResult)
+    console.log('検索結果はこちら',this.result)
   }
 
 }
