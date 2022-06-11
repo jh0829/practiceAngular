@@ -28,16 +28,17 @@ export class DataSelectService {
    * @param resultJson 格納予定JSON
    * @returns　全ての検索項目
    */
-   async createSearchResult(searchResult:any,resultJson:any){
-    //
-    const reJson ={}
+   async createSearchResult(searchResult:Array<any>,resultJson:any){
+   const  reJson = {}
     //取得した検索項目分ループする
     for(let key in searchResult){
+      const res = {}
       for(let inKey in searchResult[key]){
         resultJson[inKey].value = searchResult[key][inKey]
-      } 
-      reJson[key] = resultJson
+        res[inKey] = resultJson[inKey].value
+      }
+      reJson[key] = res
     }
-    return reJson;
+    return reJson
   }
 }

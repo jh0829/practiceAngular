@@ -4,12 +4,14 @@
     "username":{
       "name": "username",
       "value": "",
-      "show":true
+      "show": true,
+      "kata": "string"
     },
     "jobname":{
       "name":"jobname",
       "value": "",
-      "show":true
+      "show":true,
+      "kata": "string"
     }
   },
   "dummy":

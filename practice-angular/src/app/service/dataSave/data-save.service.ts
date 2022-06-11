@@ -85,19 +85,25 @@ export class DataSaveService {
    * @param searchList 
    */
   async getSearchDataList(searchList:any,jsonSearchResult:any){
+    // 初期化
+    this.searchList = new Array
+    
     const pageAdd = this.shareData.getPageAdd()
-    let viewSearchMenu = jsonSearchResult[pageAdd]
+    const viewSearchMenu = jsonSearchResult[pageAdd]
+    let result = {}
     // 検索するページID取得
     const searchPage = "getSearchData/" + pageAdd
     // 検索項目とページの取得に成功
     this.returnRsult = await this.bds.searchList(searchPage,searchList)
+    console.log('検索結果',this.returnRsult)
     // Arrayに変換
     for(let key in this.returnRsult){
       // 
       this.searchList[key] = this.returnRsult[key][0]
     }
     // API実施結果を格納する
-    viewSearchMenu = await this.dataSelect.createSearchResult(this.searchList,viewSearchMenu);
-    return viewSearchMenu
+    result = await this.dataSelect.createSearchResult(this.searchList,viewSearchMenu);
+    console.log('API変換格納後',result)
+    return result
   }
 }
