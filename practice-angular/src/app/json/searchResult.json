@@ -2,13 +2,13 @@
   "userList":
   {
     "username":{
-      "name": "username",
+      "name": "ユーザ名",
       "value": "",
       "show": true,
       "kata": "string"
     },
     "jobname":{
-      "name":"jobname",
+      "name":"職業",
       "value": "",
       "show":true,
       "kata": "string"

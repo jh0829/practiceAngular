@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
+import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 // 検索項目を作成するサービスクラス
 export class DataSelectService {
+  reJson:Array<any> = []
 
-  constructor() { }
+  constructor(
+    private shareData:ValueSharedService,
+  ) { }
 
   /**
    * 取得結果をJSONに格納
@@ -28,17 +32,19 @@ export class DataSelectService {
    * @param resultJson 格納予定JSON
    * @returns　全ての検索項目
    */
-   async createSearchResult(searchResult:Array<any>,resultJson:any){
-   const  reJson = {}
+   createSearchResult(searchResult:Array<string>,resultJson:any){
+
     //取得した検索項目分ループする
-    for(let key in searchResult){
-      const res = {}
-      for(let inKey in searchResult[key]){
-        resultJson[inKey].value = searchResult[key][inKey]
-        res[inKey] = resultJson[inKey].value
-      }
-      reJson[key] = res
-    }
-    return reJson
+    var copyDashJson: any = []
+    searchResult.forEach( (elm:any, num:any) => {
+      const copyJson = {}
+      copyJson[num] =  resultJson
+      Object.keys(copyJson[num]).forEach( (key:any) =>{
+        copyJson[num][key].value = elm[key]
+      });
+      // DEEP COPY
+      copyDashJson[num] = JSON.parse(JSON.stringify(copyJson));
+    });
+    return copyDashJson
   }
 }

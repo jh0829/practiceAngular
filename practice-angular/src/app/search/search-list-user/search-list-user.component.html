@@ -1,5 +1,14 @@
 <p>search-list-user works!</p>
 <!-- TODO:一覧表示 -->
+<span *ngIf = "searchFlg">
+    <!-- <div>
+        検索結果を表示する
+        <table mat-table [dataSource]="dataSource" 
+           matSort (matSortChange)="announceSortChange($event)"
+            class="mat-elevation-z8">
+        </table>
+    </div> -->
+</span>
 <!-- <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
