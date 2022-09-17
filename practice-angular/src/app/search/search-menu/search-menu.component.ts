@@ -13,6 +13,7 @@ import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import jsonSearchMenu from 'src/app/json/searchMenu.json';
+import jsonSearchResult from 'src/app/json/searchResult.json';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 /**
  * 検索項目を作成するクラス
@@ -80,7 +81,7 @@ export class SearchMenuComponent implements OnInit {
     console.log('検索ボタン押下後',JSON.stringify(this.searchForm.getRawValue()))
     // 検索項目をセット
     this.valueSharedService.setSearchValue(JSON.stringify(this.searchForm.getRawValue()))
-    this.childComponent.searchUser();
+    this.childComponent.searchUser(jsonSearchResult);
   }
 
 }

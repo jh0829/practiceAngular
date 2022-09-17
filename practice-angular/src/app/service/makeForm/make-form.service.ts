@@ -12,6 +12,7 @@ export class MakeFormService {
     Object.keys(searchMenu[selectMenu]).map(key =>
       searchForm.controls[key] = new FormControl('', Validators.required)
       )
+      console.log('searchForm',searchForm)
       return searchForm;
   }
 }

@@ -1,1 +1,23 @@
 <p>search-list-user works!</p>
+<!-- TODO:一覧表示 -->
+<span *ngIf = "searchFlg">
+    <div>
+        検索結果を表示する
+    </div>
+    <div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  >
+            <!-- Position Column -->
+            <ng-container matColumnDef="username">      
+                <th mat-header-cell *matHeaderCellDef> ユーザ名 </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+            <ng-container matColumnDef="jobname">      
+                <th mat-header-cell *matHeaderCellDef> ジョブ名 </th>
+                <td mat-cell *matCellDef="let element"> {{element.jobname}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</span>

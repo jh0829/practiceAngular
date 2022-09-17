@@ -1,0 +1,21 @@
+{
+  "userList":
+  {
+    "username":{
+      "name": "username",
+      "value": "",
+      "show": true,
+      "kata": "string"
+    },
+    "jobname":{
+      "name":"jobname",
+      "value": "",
+      "show":true,
+      "kata": "string"
+    }
+  },
+  "dummy":
+  {
+
+  }
+}

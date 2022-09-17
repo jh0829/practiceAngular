@@ -34,7 +34,7 @@ userListData = '''
         INNER JOIN userjob AS job on
 	        tu.job_id = job.id
         WHERE
-            tu.id = '*userId'
+            job.id = '*userJob'
     )
     SELECT to_json(tmp) FROM tmp
     '''

@@ -79,8 +79,6 @@ export class BackDataService {
    * @param searchJson 
    */
   async searchList(getUrl:string,searchJson:any){
-    console.log("ここまで処理が来ているか",this.flaskIp + getUrl)
-    console.log("検索条件",searchJson)
     try {
       // 👇️ const response: Response
       const response = await fetch(this.flaskIp + getUrl, {
@@ -98,11 +96,12 @@ export class BackDataService {
   
       // 👇️ const result: CreateUserResponse
       const result = (await response.json()) 
+      const returnValue = JSON.stringify(result)
       // as CreateUserResponse;
   
-      console.log('result is: ', JSON.stringify(result, null, 4));
+      //console.log('result is: ', JSON.stringify(result, null, 4));
   
-      return result;
+      return JSON.parse(returnValue)
     } catch (error) {
       if (error instanceof Error) {
         console.log('error message: ', error.message);
