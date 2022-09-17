@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table'  
 
 // コンポーネント
 import { AppRoutingModule } from './app-routing.module';
@@ -53,6 +54,7 @@ import { SearchMenuComponent } from './search/search-menu/search-menu.component'
     MatNativeDateModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
     LayoutModule,
     MatIconModule,
     BrowserAnimationsModule,

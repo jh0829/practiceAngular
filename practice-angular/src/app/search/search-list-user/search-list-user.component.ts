@@ -1,12 +1,14 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute  } from '@angular/router';
 import { ValueSharedService } from 'src/app/service/valueShared/value-shared.service';
 import { DataSaveService } from 'src/app/service/dataSave/data-save.service';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { DepFlags } from '@angular/compiler/src/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
-var ELEMENT_DATA:[] = []
+
+export interface EsppData  {
+  username: string;
+  jobname: string;
+}
 
 @Component({
   selector: 'search-list-user',
@@ -16,9 +18,10 @@ var ELEMENT_DATA:[] = []
 
 export class SearchListUserComponent implements OnInit {
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  //実験
+  esppForm: FormGroup;
+  esppDataList: EsppData[] = []
+  dataSource: MatTableDataSource<EsppData>;
   searchFlg = false
   pageAdd = 'userList'
   searchList = {}
@@ -26,7 +29,11 @@ export class SearchListUserComponent implements OnInit {
   result = {}
   headerName = {}
   resultValue = []
-  dataSource = new MatTableDataSource(ELEMENT_DATA)
+  viewValue = {}
+  displayedColumns: string[] = [
+    'username',
+    'jobname'
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,38 +41,57 @@ export class SearchListUserComponent implements OnInit {
     private fb: FormBuilder,
     private ds: DataSaveService,
   ) {
-    console.log('searchUser active')
     valueSharedService.setPageAdd(this.pageAdd)
+    this.dataSource = new MatTableDataSource<EsppData>(this.esppDataList);
+    this.esppForm = this.fb.group({
+      username: ['', Validators.required],
+      jobname: ['', Validators.required],
+    });
    }
 
   ngOnInit(): void {
-    this.searchFlg = false
-    // this.dataSource.paginator = this.paginator
+    this.searchFlg = false;
   }
   
   /**
    * ユーザデータ検索
    */
   async searchUser(jsonSearchResult:any){
+    // 初期化
+    this.esppDataList = []
+    this.result = []
+    this.resultValue = []
+    this.viewValue = [] 
     console.log('検索開始')
     this.searchFlg = true
     this.searchList = this.valueSharedService.getSerachValue()
     this.result = await  this.ds.getSearchDataList(this.searchList,jsonSearchResult)
     console.log('検索結果はこちら',this.result)
-    // ヘッダキー取得
-    const headerKey = Object.keys(this.result[0][0])
-    // ヘッダ名を取得する
-    for(let nm in headerKey){
-      this.headerName[nm] = (this.result[0][0][headerKey[nm]].name)
-    }
-    console.log('keys',this.headerName)
+    console.log("header",this.headerName)
     // 検索結果の取得
-      for(let renum in this.result){
-       this.resultValue[renum] = this.result[renum][renum]
-      } 
-    console.log('val',this.resultValue)
-    //ELEMENT_DATA = this.resultValue
-    this.dataSource = new MatTableDataSource(this.resultValue);
+    for(let renum in this.result){
+      this.resultValue[renum] = this.result[renum][renum]
+    }
+    
+    // materialSet用の形にする 
+    for(let key in this.resultValue){
+      const setValue = {}
+      for(let inKey in this.resultValue[key]){
+        setValue[inKey] = (this.resultValue[key][inKey]["value"])
+      }
+      this.viewValue[key] =JSON.parse(JSON.stringify(setValue));
+    }
+    console.log('最終形態',this.viewValue)
+    // 各取得結果を格納する
+    for(let val in this.viewValue){
+      this.esppDataList.push({
+        username:this.viewValue[val].username,
+        jobname:this.viewValue[val].jobname,
+      }) 
+
+    }
+    // 画面表示用の変数に格納
+    this.dataSource = new MatTableDataSource<EsppData>(this.esppDataList)    
   }
   
 }

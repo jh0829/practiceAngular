@@ -86,7 +86,7 @@ export class DataSaveService {
    */
   async getSearchDataList(searchList:any,jsonSearchResult:any){
     // 初期化
-    //this.searchList = new Array
+    this.searchList = []
     
     const pageAdd = this.shareData.getPageAdd()
     const viewSearchMenu = jsonSearchResult[pageAdd]
@@ -98,7 +98,6 @@ export class DataSaveService {
     console.log('検索結果',this.returnRsult)
     // Arrayに変換
     for(let key in this.returnRsult){
-      // 
       this.searchList[key] = this.returnRsult[key][0]
     }
     // API実施結果を格納する
